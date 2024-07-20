@@ -204,6 +204,8 @@ function action2_build ()
             && prepare_build_dir $emacs_build_dir && emacs_configure_build_dir; then
         echo Building Emacs in directory $emacs_build_dir
         make -j $emacs_build_threads -C $emacs_build_dir && return 0
+        make -j $emacs_build_threads -C $emacs_build_dir bootstrap && return 0
+        make -j $emacs_build_threads -C $emacs_build_dir && return 0
     fi
     echo Configuration and build process failed
     return -1
